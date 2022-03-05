@@ -1,0 +1,17 @@
+.app {
+  text-align: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-gap: 20px;
+  justify-content: center;
+}
+
+.movie {
+  border: 5px solid white;
+}
+
+.selected {
+  border: 5px solid red;
+}
