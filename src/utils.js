@@ -2,10 +2,8 @@ export const NB_COLUMNS = 5;
 export const NB_ROWS = 3;
 export const PAGE_SIZE = NB_COLUMNS * NB_ROWS;
 
-export const moveSelectedIndex = (evt, selectedIndex, setSelectedIndex, nbTotalPosters) => {
-    evt.preventDefault();
-
-    switch (evt.keyCode) {
+export const moveSelectedIndex = (keyCode, selectedIndex, setSelectedIndex, nbTotalPosters) => {
+    switch (keyCode) {
         case 38:
             // FLECHE HAUT
             if (selectedIndex % PAGE_SIZE >= NB_COLUMNS) // inactif sur 1e ligne

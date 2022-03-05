@@ -12,7 +12,10 @@ const App = () => {
   const nbTotalPosters = posters.length;
 
   const handleKeyDown = useCallback(
-      (evt) => moveSelectedIndex(evt, selectedIndex, setSelectedIndex, nbTotalPosters),
+      (evt) => {
+        evt.preventDefault();
+        moveSelectedIndex(evt.keyCode, selectedIndex, setSelectedIndex, nbTotalPosters);
+      },
       [selectedIndex, nbTotalPosters]
   );
 
