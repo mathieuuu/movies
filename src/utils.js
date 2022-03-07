@@ -6,17 +6,24 @@ export const moveSelectedIndex = (keyCode, selectedIndex, setSelectedIndex, nbTo
     switch (keyCode) {
         case 38:
             // FLECHE HAUT
-            if (selectedIndex % PAGE_SIZE >= NB_COLUMNS) // inactif sur 1e ligne
-                setSelectedIndex(selectedIndex - NB_COLUMNS); // y-1
+            if (selectedIndex < NB_COLUMNS) {
+                // cas 1e page, 1e ligne
+                if (selectedIndex <= nbTotalPosters%NB_ROWS)
+                    setSelectedIndex(Math.floor(nbTotalPosters/NB_ROWS)*NB_ROWS + selectedIndex-1);
+                else
+                    setSelectedIndex(Math.floor(nbTotalPosters/NB_ROWS)*NB_ROWS + selectedIndex-1 - NB_COLUMNS);
+            } else {
+                setSelectedIndex(selectedIndex - NB_COLUMNS);
+            }
             break;
 
         case 40:
             // FLECHE BAS
-            if (selectedIndex % PAGE_SIZE < NB_COLUMNS * (NB_ROWS - 1)) { // inactif sur derniere ligne
-                if (selectedIndex + NB_COLUMNS < nbTotalPosters)
-                    setSelectedIndex(selectedIndex + NB_COLUMNS); // y+1
-                else if (nbTotalPosters >= selectedIndex + (NB_COLUMNS - selectedIndex % NB_COLUMNS))
-                    setSelectedIndex(nbTotalPosters - 1); // => dernière page, dernier element
+            if (selectedIndex + NB_COLUMNS >= nbTotalPosters) {
+                // cas derniere page, derniere ligne
+                setSelectedIndex(selectedIndex%NB_COLUMNS);
+            } else {
+                setSelectedIndex(selectedIndex + NB_COLUMNS); // y+1
             }
             break;
 
